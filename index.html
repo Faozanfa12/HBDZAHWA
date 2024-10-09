@@ -10,8 +10,10 @@
       html {
         margin: 0;
         padding: 0;
-        font-family: "Comic Sans MS", cursive, sans-serif;
-        background: linear-gradient(45deg, #ff1493, #ffd700);
+        font-family: "Times New Roman", serif;
+        background: url("https://media.giphy.com/media/l1J9sqWg6hZnMKrBK/source.gif")
+          no-repeat center center fixed; /* Ganti URL ini dengan URL GIF Anda */
+        background-size: cover; /* Mengubah ukuran background agar menutupi seluruh layar */
         color: white;
         display: flex;
         justify-content: center;
@@ -19,18 +21,18 @@
         height: 100vh;
         text-align: center;
         overflow: hidden;
-        animation: backgroundFlicker 3s infinite alternate;
+        animation: backgroundFlicker 3s infinite alternate; /* Jika Anda ingin mempertahankan animasi ini, Anda bisa mengubah ini ke sesuatu yang lain */
       }
 
       @keyframes backgroundFlicker {
         0% {
-          background: linear-gradient(45deg, #ff1493, #ffd700);
+          /* Hapus atau modifikasi jika perlu */
         }
         50% {
-          background: linear-gradient(45deg, #ffd700, #ff4500);
+          /* Hapus atau modifikasi jika perlu */
         }
         100% {
-          background: linear-gradient(45deg, #ff4500, #32cd32);
+          /* Hapus atau modifikasi jika perlu */
         }
       }
 
@@ -189,7 +191,7 @@
 
     <audio
       id="happySound"
-      src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3"
+      src="https://www.bensound.com/bensound-music/bensound-sweet.mp3"
       preload="auto"
       autoplay
       loop
