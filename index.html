@@ -13,7 +13,7 @@
         font-family: "Times New Roman", serif;
         background: url("https://media.giphy.com/media/l1J9sqWg6hZnMKrBK/source.gif")
           no-repeat center center fixed; /* Ganti URL ini dengan URL GIF Anda */
-        background-size: cover; /* Mengubah ukuran background agar menutupi seluruh layar */
+        background-size: cover;
         color: white;
         display: flex;
         justify-content: center;
@@ -21,19 +21,6 @@
         height: 100vh;
         text-align: center;
         overflow: hidden;
-        animation: backgroundFlicker 3s infinite alternate; /* Jika Anda ingin mempertahankan animasi ini, Anda bisa mengubah ini ke sesuatu yang lain */
-      }
-
-      @keyframes backgroundFlicker {
-        0% {
-          /* Hapus atau modifikasi jika perlu */
-        }
-        50% {
-          /* Hapus atau modifikasi jika perlu */
-        }
-        100% {
-          /* Hapus atau modifikasi jika perlu */
-        }
       }
 
       .container {
@@ -187,13 +174,15 @@
         <button class="button" onclick="nextPage()">Next</button>
         <button class="button" onclick="triggerSurprise()">Surprise!</button>
       </div>
+      <div class="sound-container">
+        <button class="button" onclick="toggleSound()">Sound On</button>
+      </div>
     </div>
 
     <audio
       id="happySound"
       src="https://www.bensound.com/bensound-music/bensound-sweet.mp3"
       preload="auto"
-      autoplay
       loop
     ></audio>
 
@@ -213,10 +202,11 @@
     <script>
       let currentPage = 1;
       const totalPages = 3;
+      let isSoundOn = true;
 
       function nextPage() {
         const sound = document.getElementById("happySound");
-        if (sound) {
+        if (isSoundOn) {
           sound.play().catch((error) => {
             console.log("Audio tidak dapat diputar otomatis:", error);
           });
@@ -234,6 +224,18 @@
       function triggerSurprise() {
         alert("Surprise! Semoga hari kamu penuh dengan kejutan menyenangkan!");
         window.open("https://www.youtube.com/watch?v=y1cBhJLNNXU", "_blank");
+      }
+
+      function toggleSound() {
+        const sound = document.getElementById("happySound");
+        isSoundOn = !isSoundOn;
+        if (isSoundOn) {
+          sound.play();
+          document.querySelector('.sound-container .button').innerText = "Sound Off";
+        } else {
+          sound.pause();
+          document.querySelector('.sound-container .button').innerText = "Sound On";
+        }
       }
     </script>
   </body>
