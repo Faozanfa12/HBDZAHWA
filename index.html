@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ulang Tahun Zahwa</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        background: linear-gradient(45deg, #ff1493, #ffd700);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        overflow: hidden;
+        animation: backgroundFlicker 3s infinite alternate;
+      }
+
+      @keyframes backgroundFlicker {
+        0% {
+          background: linear-gradient(45deg, #ff1493, #ffd700);
+        }
+        50% {
+          background: linear-gradient(45deg, #ffd700, #ff4500);
+        }
+        100% {
+          background: linear-gradient(45deg, #ff4500, #32cd32);
+        }
+      }
+
+      .container {
+        width: 90%;
+        max-width: 600px;
+        padding: 20px;
+        border: 5px solid white;
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        animation: pulse 1.5s infinite alternate;
+      }
+
+      @keyframes pulse {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.05);
+        }
+      }
+
+      .content {
+        display: none;
+      }
+
+      .content.active {
+        display: block;
+        animation: slideIn 1s ease-in-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .button-container {
+        margin-top: 20px;
+      }
+
+      .button {
+        background: #ffd700;
+        color: #ff4500;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background 0.3s, transform 0.2s;
+        margin: 5px;
+      }
+
+      .button:hover {
+        background: #ff4500;
+        transform: scale(1.1);
+      }
+
+      /* Confetti Style */
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        opacity: 0;
+        animation: fall 3s infinite ease-in-out;
+      }
+
+      .confetti:nth-child(even) {
+        background-color: yellow;
+      }
+      .confetti:nth-child(odd) {
+        background-color: blue;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Balloon Animation */
+      .balloon {
+        position: absolute;
+        bottom: -100px;
+        width: 40px;
+        height: 60px;
+        background: radial-gradient(circle at 50% 50%, #ff1493, #ff69b4);
+        border-radius: 50% 50% 50% 50% / 60% 60% 100% 100%;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .balloon:nth-child(odd) {
+        animation-duration: 10s;
+      }
+      .balloon:nth-child(even) {
+        animation-duration: 12s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) translateX(0);
+        }
+        50% {
+          transform: translateY(-400px) translateX(30px);
+        }
+        100% {
+          transform: translateY(-800px) translateX(-30px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content active" id="page1">
+        <h2>Selamat ulang tahun yang ke 19 tahun, Zahwa Rahma Nisa!</h2>
+        <p>
+          Semoga di hari spesial kamu ini, kebahagiaan selalu ada buat kamu
+          kedepanya ya, semoga makin jadi anak yang jauh lebih baik, yang pasti
+          impian-impian kamu semakin dekat buat diraih, dan segala hal baik
+          datang menyertai kamu Aamiin. Aku sangat bersyukur bisa jadi bagian
+          dari hidup kamu.
+        </p>
+      </div>
+      <div class="content" id="page2">
+        <p>
+          Aku juga pengin minta maaf dari hati yang paling dalam atas semua hal
+          yang pernah aku lakuin di masa lalu yang buat kamu sakit hati. Aku
+          nyesel atas kesalahan-kesalahan itu, dan aku janji akan terus berusaha
+          jadi yang lebih baik untuk kamu dan untuk hubungan kita. Terima kasih
+          udah tetep bertahan sama hubungan ini ya.
+        </p>
+      </div>
+      <div class="content" id="page3">
+        <p>
+          Semoga hubungan ini selalu diberkahi cinta, pengertian, dan
+          kebahagiaan ya Aamiin. Selamat ulang tahun, Zahwa, aku sayang kamu❤️.
+        </p>
+      </div>
+      <div class="button-container">
+        <button class="button" onclick="nextPage()">Next</button>
+        <button class="button" onclick="triggerSurprise()">Surprise!</button>
+      </div>
+    </div>
+
+    <audio
+      id="happySound"
+      src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3"
+      preload="auto"
+      autoplay
+      loop
+    ></audio>
+
+    <!-- Confetti Elements -->
+    <div class="confetti" style="left: 10%; animation-delay: 0s"></div>
+    <div class="confetti" style="left: 30%; animation-delay: 0.5s"></div>
+    <div class="confetti" style="left: 50%; animation-delay: 1s"></div>
+    <div class="confetti" style="left: 70%; animation-delay: 1.5s"></div>
+    <div class="confetti" style="left: 90%; animation-delay: 2s"></div>
+
+    <!-- Balloon Elements -->
+    <div class="balloon" style="left: 15%"></div>
+    <div class="balloon" style="left: 35%"></div>
+    <div class="balloon" style="left: 55%"></div>
+    <div class="balloon" style="left: 75%"></div>
+
+    <script>
+      let currentPage = 1;
+      const totalPages = 3;
+
+      function nextPage() {
+        const sound = document.getElementById("happySound");
+        if (sound) {
+          sound.play().catch((error) => {
+            console.log("Audio tidak dapat diputar otomatis:", error);
+          });
+        }
+        document
+          .getElementById(`page${currentPage}`)
+          .classList.remove("active");
+        currentPage++;
+        if (currentPage > totalPages) {
+          currentPage = 1;
+        }
+        document.getElementById(`page${currentPage}`).classList.add("active");
+      }
+
+      function triggerSurprise() {
+        alert("Surprise! Semoga hari kamu penuh dengan kejutan menyenangkan!");
+        window.open("https://www.youtube.com/watch?v=y1cBhJLNNXU", "_blank");
+      }
+    </script>
+  </body>
+</html>
